@@ -4,26 +4,10 @@ import { languages } from "./languages"
 import { getFarewellText, getRandomWord } from "./utils"
 import Confetti from "react-confetti"
 
-/**
- * Backlog:
- * 
- * ✅ Farewell messages in status section
- * ✅ Disable the keyboard when the game is over
- * ✅ Fix a11y issues
- * ✅ Choose a random word from a list of words
- * ✅ Make the New Game button reset the game
- * ✅ Reveal what the word was if the user loses the game
- * ✅ Confetti drop when the user wins
- * 
- * Challenge: 🎊🎊🎊🎊🎊
- */
-
 export default function AssemblyEndgame() {
-    // State values
     const [currentWord, setCurrentWord] = useState(() => getRandomWord())
     const [guessedLetters, setGuessedLetters] = useState([])
 
-    // Derived values
     const numGuessesLeft = languages.length - 1
     const wrongGuessCount =
         guessedLetters.filter(letter => !currentWord.includes(letter)).length
@@ -35,7 +19,6 @@ export default function AssemblyEndgame() {
     const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
     let remainingGuesses = languages.length - wrongGuessCount -1
 
-    // Static values
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
     function addGuessedLetter(letter) {
@@ -171,7 +154,6 @@ export default function AssemblyEndgame() {
                 {letterElements}
             </section>
 
-            {/* Combined visually-hidden aria-live region for status updates */}
             <section
                 className="sr-only"
                 aria-live="polite"
